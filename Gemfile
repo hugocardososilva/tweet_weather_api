@@ -23,26 +23,26 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-gem 'rack-cors'
+#gem 'rack-cors'
 
 gem 'faraday'
 
+gem 'apitome'
 gem 'rspec_api_documentation'
-gem "apitome"
 
 gem 'weatherizableAPI', '~> 0.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rubycritic'
-  gem 'simplecov'
-  gem 'ffaker'
-  gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'factory_bot_rails'
+  gem 'ffaker'
   gem 'rspec-rails'
+  gem 'rubycritic'
   gem 'shoulda'
   gem 'shoulda-matchers'
+  gem 'simplecov'
 end
 
 group :development do
