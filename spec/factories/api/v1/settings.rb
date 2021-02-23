@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :setting do
+  factory :api_v1_setting, class: 'Api::V1::Setting' do
     openwather_key { "MyString" }
     twitter_api_key { "MyString" }
     lang { "MyString" }
