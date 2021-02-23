@@ -6,8 +6,6 @@ class CreateSettings < ActiveRecord::Migration[6.0]
       t.string :lang
       t.string :units
 
-      t.references :user, index: true
-
       t.timestamps
     end
   end
