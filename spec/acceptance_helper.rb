@@ -1,10 +1,8 @@
 require 'rspec_api_documentation/dsl'
 require 'rails_helper'
 require 'rspec_api_documentation'
-require_relative '../lib/acceptance/auto_generate'
 
 RspecApiDocumentation.configure do |config|
-  include AutoGenerate
 
   # Set the application that Rack::Test uses
   config.app = Rails.application
@@ -16,7 +14,7 @@ RspecApiDocumentation.configure do |config|
   config.format = [:json]
 
   # Used when adding a cURL output to the docs
-  config.curl_host = 'http://localhost:3000'
+  config.curl_host = 'http://localhost:3001'
 
   # Used when adding a cURL output to the docs
   # Allows you to filter out headers that are not needed in the cURL request,
