@@ -50,7 +50,11 @@ module Api
 
           # Only allow a list of trusted parameters through.
         def user_params
-          params.require(:user).permit(:username, :email, :name, :password)
+          params.require(:user).permit(:username, :email, :name, :password,
+                                       setting_attributes: [
+                                         :id, :openwather_key, :twitter_api_key, :lang, :units
+                                       ]
+                                       )
         end
       end
   end
