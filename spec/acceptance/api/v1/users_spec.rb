@@ -58,7 +58,6 @@ resource 'User' do
   # object id alias
   let(:id) { user.id }
 
-
   # index
   get 'api/v1/users' do
     # simulates a request
