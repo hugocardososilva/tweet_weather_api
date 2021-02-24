@@ -9,5 +9,6 @@ RSpec.describe Tweet, type: :model do
 
   context 'validates' do
     it { should validate_presence_of(:message) }
+    it { should validate_presence_of(:location) }
   end
 end

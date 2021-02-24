@@ -5,13 +5,15 @@ require 'rails_helper'
 
 def tweet_params
   parameter :status, type: :array, items: { type: :string, enum: Tweet.statuses.values }, parent: 'tweet'
-  parameter :message, type: :test, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
+  parameter :message, type: :text, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
+  parameter :tweet, type: :text, parent: 'tweet', example: FFaker::Lorem.AddressBR.city, required: true
   parameter :user_id, type: :integer, parent: 'tweet', example: 1, required: true
 end
 
 def tweet_attributes
   let(:status) { 'done' }
   let(:message) { FFaker::Lorem.characters(140) }
+  let(:tweet) { FFaker::Lorem.AddressBR.city }
   let(:user_id) { FactoryBot.create(:user).id }
 end
 
