@@ -29,13 +29,13 @@ resource 'Tweet' do
 
   before do
     2.times do |_t|
-      FactoryBot.create(:tweet, user: FactoryBot.create(:user))
+      FactoryBot.create(:tweet, user: FactoryBot.create(:user, :with_good_keys))
     end
   end
 
   # example object for show, update and destroy
   let(:tweet) do
-    FactoryBot.create(:tweet, user: FactoryBot.create(:user))
+    FactoryBot.create(:tweet, user: FactoryBot.create(:user, :with_good_keys))
   end
 
   # object id alias

@@ -19,7 +19,7 @@ RSpec.describe '/tweets', type: :request do
   # Tweet. As you add validations to Tweet, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    FactoryBot.build(:tweet, user: FactoryBot.create(:user)).attributes.symbolize_keys
+    FactoryBot.build(:tweet, user: FactoryBot.create(:user, :with_good_keys)).attributes.symbolize_keys
   end
 
   let(:invalid_attributes) do
