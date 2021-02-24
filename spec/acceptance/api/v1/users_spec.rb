@@ -52,7 +52,7 @@ resource 'User' do
 
   # example object for show, update and destroy
   let(:user) do
-    FactoryBot.create(:usec)
+    FactoryBot.create(:user)
   end
 
   # object id alias
