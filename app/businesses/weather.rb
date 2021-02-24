@@ -7,10 +7,22 @@ class Weather
   end
 
   def build
-    @message = weather_api.new(weather_params)
+    messageable_tweet
   end
 
   private
+
+  def messageable_tweet
+    @message = weather_api.new(weather_params)
+    if @message.forecast.cod == "200"
+      @tweet.message = @message.prevision
+    else
+      @tweet.message = @message.forecast.message
+      @tweet.status = 'error'
+      @tweet.errors.add :base, @message.forecast.message
+    end
+    @tweet
+  end
 
   def weather_api
     OpenWeatherApi::Messageable
@@ -19,9 +31,9 @@ class Weather
   def weather_params
     {
       q: @tweet.location,
-      units: @tweet.units,
-      lang: @tweet.lang,
-      appid: @tweet.user.settings.openwather_key
+      units: @tweet.user.setting.units,
+      lang: @tweet.user.setting.lang,
+      appid: @tweet.user.setting.openwather_key
     }
   end
 end
