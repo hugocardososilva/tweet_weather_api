@@ -23,7 +23,7 @@ RSpec.describe '/api/v1/users', type: :request do
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    FactoryBot.build(:user, username: nil).attributes.symbolize_keys
   end
 
   # This should return the minimal set of values that should be in the headers
@@ -79,7 +79,7 @@ RSpec.describe '/api/v1/users', type: :request do
         post api_v1_users_url,
              params: { user: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe '/api/v1/users', type: :request do
         patch api_v1_user_url(user),
               params: { user: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end

@@ -4,18 +4,18 @@ require 'acceptance_helper'
 require 'rails_helper'
 
 def user_params
-  parameter :username, type: :string, parent: 'user', example: FFaker::Internet.user_name
-  parameter :email, type: :string, parent: 'user', example: FFaker::Internet.email
-  parameter :name, type: :string, parent: 'user', example: FFaker::NameBR.name
-  parameter :password, type: :string, parent: 'user', example: rand(99_999_999)
+  parameter :username, type: :string, parent: 'user', example: FFaker::Internet.user_name, required: true
+  parameter :email, type: :string, parent: 'user', example: FFaker::Internet.email, required: true
+  parameter :name, type: :string, parent: 'user', example: FFaker::NameBR.name, required: true
+  parameter :password, type: :string, parent: 'user', example: rand(99_999_999), required: true
 
   parameter :setting_attributes, parent: 'setting', type: :array
   parameter :openwather_key, type: :string, parent: 'setting_attributes',
-                             example: 'ASD3248sfdfsdfs98yady983y9as8yd98asyd'
+                             example: 'ASD3248sfdfsdfs98yady983y9as8yd98asyd', required: true
   parameter :twitter_api_key, type: :string, parent: 'setting_attributes',
-                              example: 'ASD3248sfdfsdfs98yady983y9as8yd98asyd'
-  parameter :lang, type: :array, items: { type: :string, enum: Setting.langs.values }, parent: 'setting_attributes'
-  parameter :units, type: :array, items: { type: :string, enum: Setting.units.values }, parent: 'setting_attributes'
+                              example: 'ASD3248sfdfsdfs98yady983y9as8yd98asyd', required: true
+  parameter :lang, type: :array, items: { type: :string, enum: Setting.langs.values }, parent: 'setting_attributes', required: true
+  parameter :units, type: :array, items: { type: :string, enum: Setting.units.values }, parent: 'setting_attributes', required: true
 end
 
 def user_attributes

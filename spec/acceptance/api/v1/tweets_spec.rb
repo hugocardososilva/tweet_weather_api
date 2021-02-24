@@ -5,7 +5,7 @@ require 'rails_helper'
 
 def tweet_params
   parameter :status, type: :array, items: { type: :string, enum: Tweet.statuses.values }, parent: 'tweet'
-  parameter :message, type: :test, parent: 'tweet', example: FFaker::Lorem.characters(140)
+  parameter :message, type: :test, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
   parameter :user_id, type: :integer, parent: 'tweet', example: 1, required: true
 end
 

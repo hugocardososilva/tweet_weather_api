@@ -23,7 +23,7 @@ RSpec.describe '/tweets', type: :request do
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    FactoryBot.build(:tweet).attributes.symbolize_keys
   end
 
   # This should return the minimal set of values that should be in the headers
@@ -63,7 +63,7 @@ RSpec.describe '/tweets', type: :request do
         post api_v1_tweets_url,
              params: { tweet: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including('application/json'))
+        expect(response.content_type).to match(a_string_including('application/json; charset=utf-8'))
       end
     end
 
@@ -79,7 +79,7 @@ RSpec.describe '/tweets', type: :request do
         post api_v1_tweets_url,
              params: { tweet: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end
