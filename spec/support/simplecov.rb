@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'simplecov'
 
 # FIXME: minimum_coverage no bitbucket pipeline
@@ -9,11 +11,9 @@ require 'simplecov'
 # SimpleCov.refuse_coverage_drop
 SimpleCov.start 'rails' do
   add_filter %w[bin db config spec test]
-  add_filter ["app/channels", "app/helpers"]
+  add_filter ['app/channels', 'app/helpers']
 
-
-  add_group "Models", "app/models"
-  add_group "Controllers", "app/controllers"
-  add_group "Lib", "app/lib"
-
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Lib', 'app/lib'
 end

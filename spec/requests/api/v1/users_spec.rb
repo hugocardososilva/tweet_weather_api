@@ -12,12 +12,12 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/settings", type: :request do
+RSpec.describe "/api/v1/users", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Setting. As you add validations to Setting, be sure to
+  # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.build(:user).attributes.symbolize_keys
   }
 
   let(:invalid_attributes) {
@@ -26,7 +26,7 @@ RSpec.describe "/settings", type: :request do
 
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
-  # SettingsController, or in your router and rack
+  # UsersController, or in your router and rack
   # middleware. Be sure to keep this updated too.
   let(:valid_headers) {
     {}
@@ -34,48 +34,48 @@ RSpec.describe "/settings", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Setting.create! valid_attributes
-      get settings_url, headers: valid_headers, as: :json
+      User.create! valid_attributes
+      get api_v1_users_url, headers: valid_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      setting = Setting.create! valid_attributes
-      get setting_url(setting), as: :json
+      user = User.create! valid_attributes
+      get api_v1_user_url(user), as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Setting" do
+      it "creates a new User" do
         expect {
-          post settings_url,
-               params: { setting: valid_attributes }, headers: valid_headers, as: :json
-        }.to change(Setting, :count).by(1)
+          post api_v1_users_url,
+               params: { user: valid_attributes }, headers: valid_headers, as: :json
+        }.to change(User, :count).by(1)
       end
 
-      it "renders a JSON response with the new setting" do
-        post settings_url,
-             params: { setting: valid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the new user" do
+        post api_v1_users_url,
+             params: { user: valid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Setting" do
+      it "does not create a new User" do
         expect {
-          post settings_url,
-               params: { setting: invalid_attributes }, as: :json
-        }.to change(Setting, :count).by(0)
+          post api_v1_users_url,
+               params: { user: invalid_attributes }, as: :json
+        }.to change(User, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new setting" do
-        post settings_url,
-             params: { setting: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the new user" do
+        post api_v1_users_url,
+             params: { user: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -85,31 +85,32 @@ RSpec.describe "/settings", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        FactoryBot.build(:user).attributes.symbolize_keys
       }
 
-      it "updates the requested setting" do
-        setting = Setting.create! valid_attributes
-        patch setting_url(setting),
-              params: { setting: new_attributes }, headers: valid_headers, as: :json
-        setting.reload
-        skip("Add assertions for updated state")
+      it "updates the requested user" do
+        user = User.create! valid_attributes
+        patch api_v1_user_url(user),
+              params: { user: new_attributes }, headers: valid_headers, as: :json
+        user.reload
+        expect(user.persisted?).to eq(true)
+        expect(user.username).to eq(new_attributes[:username])
       end
 
-      it "renders a JSON response with the setting" do
-        setting = Setting.create! valid_attributes
-        patch setting_url(setting),
-              params: { setting: new_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with the user" do
+        user = User.create! valid_attributes
+        patch api_v1_user_url(user),
+              params: { user: new_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the setting" do
-        setting = Setting.create! valid_attributes
-        patch setting_url(setting),
-              params: { setting: invalid_attributes }, headers: valid_headers, as: :json
+      it "renders a JSON response with errors for the user" do
+        user = User.create! valid_attributes
+        patch api_v1_user_url(user),
+              params: { user: invalid_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
@@ -117,11 +118,11 @@ RSpec.describe "/settings", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested setting" do
-      setting = Setting.create! valid_attributes
+    it "destroys the requested user" do
+      user = User.create! valid_attributes
       expect {
-        delete setting_url(setting), headers: valid_headers, as: :json
-      }.to change(Setting, :count).by(-1)
+        delete api_v1_user_url(user), headers: valid_headers, as: :json
+      }.to change(User, :count).by(-1)
     end
   end
 end
