@@ -21,7 +21,7 @@ module Api
         @tweet = Tweet.new(tweet_params)
 
         if @tweet.save
-          render :show, status: :created, location: @tweet
+          render :show, status: :created, location: { tweet: @tweet }
         else
           render json: @tweet.errors, status: :unprocessable_entity
         end
