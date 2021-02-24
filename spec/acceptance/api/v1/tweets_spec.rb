@@ -10,7 +10,7 @@ def tweet_params
 end
 
 def tweet_attributes
-  let(:status) { "done" }
+  let(:status) { 'done' }
   let(:message) { FFaker::Lorem.characters(140) }
   let(:user_id) { FactoryBot.create(:user).id }
 end
@@ -38,7 +38,6 @@ resource 'Tweet' do
 
   # object id alias
   let(:id) { tweet.id }
-
 
   # index
   get 'api/v1/tweets' do

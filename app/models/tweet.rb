@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class Tweet < ApplicationRecord
   belongs_to :user
 
-  enum status: { error: "error", done: "done"}
-
+  enum status: { error: 'error', done: 'done' }
 end
