@@ -17,7 +17,7 @@ RSpec.describe "/tweets", type: :request do
   # Tweet. As you add validations to Tweet, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    FactoryBot.build(:tweet).attributes.symbolize_keys
   }
 
   let(:invalid_attributes) {
@@ -79,49 +79,6 @@ RSpec.describe "/tweets", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq("application/json")
       end
-    end
-  end
-
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested tweet" do
-        tweet = Tweet.create! valid_attributes
-        patch api_v1_tweet_url(tweet),
-              params: { tweet: new_attributes }, headers: valid_headers, as: :json
-        tweet.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "renders a JSON response with the tweet" do
-        tweet = Tweet.create! valid_attributes
-        patch api_v1_tweet_url(tweet),
-              params: { tweet: new_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:ok)
-        expect(response.content_type).to match(a_string_including("application/json"))
-      end
-    end
-
-    context "with invalid parameters" do
-      it "renders a JSON response with errors for the tweet" do
-        tweet = Tweet.create! valid_attributes
-        patch api_v1_tweet_url(tweet),
-              params: { tweet: invalid_attributes }, headers: valid_headers, as: :json
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq("application/json")
-      end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested tweet" do
-      tweet = Tweet.create! valid_attributes
-      expect {
-        delete api_v1_tweet_url(tweet), headers: valid_headers, as: :json
-      }.to change(Tweet, :count).by(-1)
     end
   end
 end
