@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :tweet do
-    status { "MyString" }
-    message { "MyText" }
+    status { "done" }
+    message { FFaker::Lorem.characters 140 }
+
+    association :user
   end
 end
