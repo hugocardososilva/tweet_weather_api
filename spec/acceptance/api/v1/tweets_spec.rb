@@ -14,7 +14,7 @@ def tweet_attributes
   let(:status) { 'done' }
   let(:message) { FFaker::Lorem.characters(140) }
   let(:location) { FFaker::AddressBR.city }
-  let(:user_id) { FactoryBot.create(:user).id }
+  let(:user_id) { FactoryBot.create(:user, :with_good_keys).id }
 end
 
 resource 'Tweet' do
@@ -24,7 +24,7 @@ resource 'Tweet' do
   header 'Content-Type', 'application/json'
   header 'Host', 'localhost:3000'
 
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, :with_good_keys) }
   let(:tweet) { FactoryBot.create(:tweet, user: user) }
 
   before do
