@@ -1,5 +1,6 @@
-class TwitterApi
+# frozen_string_literal: true
 
+class TwitterApi
   def initialize(options = {})
     @options = options
     @tweet = @options[:tweet]
@@ -11,7 +12,7 @@ class TwitterApi
 
   def send_twitter(message)
     get_client.update message
-  rescue
+  rescue StandardError
     false
   end
 
@@ -25,5 +26,4 @@ class TwitterApi
       config.access_token_secret = @tweet.user.setting.twitter_access_token_secret
     end
   end
-
 end

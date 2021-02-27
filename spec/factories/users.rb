@@ -14,8 +14,7 @@ FactoryBot.define do
                           twitter_access_token: Rails.application.credentials.config[:twitter_access_token],
                           twitter_access_token_secret: Rails.application.credentials.config[:twitter_access_token_secret],
                           units: 'metric',
-                          user: user
-                          )
+                          user: user)
       end
     end
 
@@ -26,10 +25,8 @@ FactoryBot.define do
                           twitter_access_token: 'asdj0123je0239jd0sjd0a9jsd09jasd',
                           twitter_access_token_secret: 'asdj0123je0239jd0sjd0a9jsd09jasd',
                           units: 'metric',
-                          user: user
-        )
+                          user: user)
       end
     end
-
   end
 end

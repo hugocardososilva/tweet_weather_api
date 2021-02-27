@@ -13,11 +13,13 @@ def user_params
   parameter :openwather_key, type: :string, parent: 'setting_attributes',
                              example: 'ASD3248sfdfsdfs98yady983y9as8yd98asyd', required: true
   parameter :twitter_access_token, type: :string, parent: 'setting_attributes',
-                              example: 'TWITTER_ACCESS_TOKEN', required: true
+                                   example: 'TWITTER_ACCESS_TOKEN', required: true
   parameter :twitter_access_token_secret, type: :string, parent: 'setting_attributes',
-                              example: 'TWITTER_ACCESS_TOKEN_KEY', required: true
-  parameter :lang, type: :array, items: { type: :string, enum: Setting.langs.values }, parent: 'setting_attributes', required: true
-  parameter :units, type: :array, items: { type: :string, enum: Setting.units.values }, parent: 'setting_attributes', required: true
+                                          example: 'TWITTER_ACCESS_TOKEN_KEY', required: true
+  parameter :lang, type: :array, items: { type: :string, enum: Setting.langs.values }, parent: 'setting_attributes',
+                   required: true
+  parameter :units, type: :array, items: { type: :string, enum: Setting.units.values }, parent: 'setting_attributes',
+                    required: true
 end
 
 def user_attributes

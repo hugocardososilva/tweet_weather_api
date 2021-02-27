@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../../lib/twitter_api/twitter_api'
 
 class Twitterize
@@ -10,9 +12,9 @@ class Twitterize
   def send_twitter
     message = send_message(@tweet.message)
     if message
-      @tweet.update(status: "done")
+      @tweet.update(status: 'done')
     else
-      @tweet.update(status: "error")
+      @tweet.update(status: 'error')
       @tweet.errors.add :base, :invalid
     end
   end
@@ -20,7 +22,7 @@ class Twitterize
   private
 
   def send_message(message)
-    twitter_api.new({ tweet:@tweet }).send_twitter message
+    twitter_api.new({ tweet: @tweet }).send_twitter message
   end
 
   def twitter_api
