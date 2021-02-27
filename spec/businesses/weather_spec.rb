@@ -10,7 +10,7 @@ RSpec.describe "Weather" do
   context 'message good' do
 
     it 'check message status' do
-      expect(@tweet.status).to eq(nil)
+      expect(@tweet.status).to eq('done')
     end
 
     it 'check if message is not empty' do
