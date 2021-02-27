@@ -32,7 +32,7 @@ gem 'faraday'
 gem 'apitome'
 gem 'rspec_api_documentation'
 
-gem 'weatherizableAPI', '~> 0.1.3'
+gem 'weatherizableAPI', '~> 0.1.4'
 
 gem 'twitter'
 
