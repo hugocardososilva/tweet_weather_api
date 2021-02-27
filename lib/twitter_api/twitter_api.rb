@@ -11,6 +11,8 @@ class TwitterApi
 
   def send_twitter(message)
     get_client.update message
+  rescue
+    false
   end
 
   private
