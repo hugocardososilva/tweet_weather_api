@@ -5,13 +5,15 @@ require 'rails_helper'
 
 def tweet_params
   parameter :status, type: :array, items: { type: :string, enum: Tweet.statuses.values }, parent: 'tweet'
-  parameter :message, type: :test, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
+  parameter :message, type: :text, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
+  parameter :location, type: :text, parent: 'tweet', example: FFaker::AddressBR.city, required: true
   parameter :user_id, type: :integer, parent: 'tweet', example: 1, required: true
 end
 
 def tweet_attributes
   let(:status) { 'done' }
   let(:message) { FFaker::Lorem.characters(140) }
+  let(:location) { FFaker::AddressBR.city }
   let(:user_id) { FactoryBot.create(:user).id }
 end
 
@@ -27,13 +29,13 @@ resource 'Tweet' do
 
   before do
     2.times do |_t|
-      FactoryBot.create(:tweet, user: FactoryBot.create(:user))
+      FactoryBot.create(:tweet, user: FactoryBot.create(:user, :with_good_keys))
     end
   end
 
   # example object for show, update and destroy
   let(:tweet) do
-    FactoryBot.create(:tweet, user: FactoryBot.create(:user))
+    FactoryBot.create(:tweet, user: FactoryBot.create(:user, :with_good_keys))
   end
 
   # object id alias

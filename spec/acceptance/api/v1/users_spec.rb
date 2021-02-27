@@ -41,18 +41,18 @@ resource 'User' do
   header 'Content-Type', 'application/json'
   header 'Host', 'localhost:3000'
 
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { FactoryBot.create(:user, :with_good_keys) }
   let(:setting) { FactoryBot.create(:setting) }
 
   before do
     2.times do |_t|
-      FactoryBot.create(:user)
+      FactoryBot.create(:user, :with_good_keys)
     end
   end
 
   # example object for show, update and destroy
   let(:user) do
-    FactoryBot.create(:user)
+    FactoryBot.create(:user, :with_good_keys)
   end
 
   # object id alias

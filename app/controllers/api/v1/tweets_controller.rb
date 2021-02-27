@@ -36,7 +36,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def tweet_params
-        params.require(:tweet).permit(:status, :message, :user_id)
+        params.require(:tweet).permit(:status, :message, :location, :user_id)
       end
     end
   end
