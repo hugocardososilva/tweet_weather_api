@@ -13,6 +13,7 @@ class Twitterize
       @tweet.update(status: "done")
     else
       @tweet.update(status: "error")
+      @tweet.errors.add :base, :invalid
     end
   end
 
