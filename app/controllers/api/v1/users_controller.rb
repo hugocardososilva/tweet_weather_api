@@ -54,7 +54,7 @@ module Api
       def user_params
         params.require(:user).permit(:username, :email, :name, :password,
                                      setting_attributes: %i[
-                                       id openwather_key twitter_api_key lang units user_id
+                                       id openwather_key twitter_access_token_secret twitter_access_token lang units user_id
                                      ])
       end
     end
