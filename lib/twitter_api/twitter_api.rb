@@ -5,9 +5,17 @@ class TwitterApi
     @tweet = @options[:tweet]
   end
 
+  def client
+    get_client
+  end
+
+  def send_twitter(message)
+    get_client.update message
+  end
+
   private
 
-  def client
+  def get_client
     Twitter::REST::Client.new do |config|
       config.consumer_key        = Rails.application.credentials.config[:twitter_api_key]
       config.consumer_secret     = Rails.application.credentials.config[:twitter_api_secret_key]
