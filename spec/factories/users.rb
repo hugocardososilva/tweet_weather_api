@@ -10,8 +10,9 @@ FactoryBot.define do
     trait :with_good_keys do
       after :create do |user|
         FactoryBot.create(:setting,
-                          openwather_key: ENV['WEATHER_API'] || 'c26591317877a7d9348e3b745aee5b8b',
-                          twitter_api_key: ENV['TWITTER_API'] || 'vFnNSZwEFtws89c3m36yIgIqz',
+                          openwather_key: Rails.application.credentials.config[:open_weather_api_key],
+                          twitter_access_token: Rails.application.credentials.config[:twitter_access_token],
+                          twitter_access_token_secret: Rails.application.credentials.config[:twitter_access_token_secret],
                           units: 'metric',
                           user: user
                           )
@@ -22,7 +23,8 @@ FactoryBot.define do
       after :create do |user|
         FactoryBot.create(:setting,
                           openwather_key: 'asdj0123je0239jd0sjd0a9jsd09jasd',
-                          twitter_api_key: 'asdj0123je0239jd0sjd0a9jsd09jasd',
+                          twitter_access_token: 'asdj0123je0239jd0sjd0a9jsd09jasd',
+                          twitter_access_token_secret: 'asdj0123je0239jd0sjd0a9jsd09jasd',
                           units: 'metric',
                           user: user
         )
