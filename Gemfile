@@ -32,7 +32,9 @@ gem 'faraday'
 gem 'apitome'
 gem 'rspec_api_documentation'
 
-gem 'weatherizableAPI', '~> 0.1.1'
+gem 'weatherizableAPI', '~> 0.1.4'
+
+gem 'twitter'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

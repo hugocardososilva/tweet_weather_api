@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open_weather_api/messageable'
 class Weather
   def initialize(options = {})
@@ -14,7 +16,7 @@ class Weather
 
   def messageable_tweet
     @message = weather_api.new(weather_params)
-    if @message.forecast.cod == "200"
+    if @message.forecast.cod == '200'
       @tweet.message = @message.prevision
     else
       @tweet.message = @message.forecast.message

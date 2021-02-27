@@ -1,22 +1,21 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Weather" do
-
-  before (:all) do
+RSpec.describe 'Weather' do
+  before(:all) do
     @user = FactoryBot.create(:user, :with_good_keys)
     @tweet = FactoryBot.create(:tweet, user: @user, status: nil)
   end
 
   context 'message good' do
-
     it 'check message status' do
-      expect(@tweet.status).to eq(nil)
+      expect(@tweet.status).to eq('done')
     end
 
     it 'check if message is not empty' do
       expect(@tweet.message).to_not eq(nil)
     end
-
   end
 
   context 'message bad' do
@@ -33,10 +32,8 @@ RSpec.describe "Weather" do
       expect(@tweet.errors.empty?).to eq(false)
     end
 
-
     it 'check if message is not empty' do
       expect(@tweet.message).to_not eq(nil)
     end
-
   end
 end

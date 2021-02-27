@@ -2,6 +2,7 @@
 
 class Tweet < ApplicationRecord
   after_create :build
+  after_create :send_twitter
   belongs_to :user
 
   enum status: { error: 'error', done: 'done' }
@@ -11,6 +12,10 @@ class Tweet < ApplicationRecord
   private
 
   def build
-    Weather.new( { tweet: self } ).build
+    Weather.new({ tweet: self }).build
+  end
+
+  def send_twitter
+    Twitterize.new({ tweet: self }).send_twitter
   end
 end
