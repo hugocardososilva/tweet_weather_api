@@ -46,8 +46,8 @@ jobs:
         env:
           RAILS_ENV: test
           PGHOST: localhost
-          POSTGRES_DB: rails_github_actions_test
-          POSTGRES_USER: rails_github_actions
+          POSTGRES_DB: tweet_weather_api_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         run: |
           cp config/database.ci.yml config/database.yml
@@ -55,8 +55,8 @@ jobs:
       - name: Run tests
         env:
           PGHOST: localhost
-          POSTGRES_DB: rails_github_actions_test
-          POSTGRES_USER: rails_github_actions
+          POSTGRES_DB: tweet_weather_api_test
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
