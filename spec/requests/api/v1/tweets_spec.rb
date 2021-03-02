@@ -26,6 +26,17 @@ RSpec.describe '/tweets', type: :request do
     FactoryBot.build(:tweet).attributes.symbolize_keys
   end
 
+  let(:error_attributes) do
+    { :id => nil,
+      :status => nil,
+      :messages => true,
+      :user_id=> FactoryBot.create(:user, :with_bad_keys).id,
+      :location=>"Indaiatuba"}
+  end
+
+  let(:invalid_attributes) do
+    FactoryBot.build(:tweet).attributes.symbolize_keys
+  end
   # This should return the minimal set of values that should be in the headers
   # in order to pass any filters (e.g. authentication) defined in
   # TweetsController, or in your router and rack
@@ -78,6 +89,13 @@ RSpec.describe '/tweets', type: :request do
       it 'renders a JSON response with errors for the new tweet' do
         post api_v1_tweets_url,
              params: { tweet: invalid_attributes }, headers: valid_headers, as: :json
+        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response.content_type).to eq('application/json; charset=utf-8')
+      end
+
+      it 'renders a JSON response with errors for the new tweet' do
+        post api_v1_tweets_url,
+             params: { tweet: error_attributes }, headers: valid_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json; charset=utf-8')
       end
