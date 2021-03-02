@@ -4,13 +4,11 @@ require 'acceptance_helper'
 require 'rails_helper'
 
 def tweet_params
-  parameter :message, type: :text, parent: 'tweet', example: FFaker::Lorem.characters(140), required: true
   parameter :location, type: :text, parent: 'tweet', example: FFaker::AddressBR.city, required: true
   parameter :user_id, type: :integer, parent: 'tweet', example: 1, required: true
 end
 
 def tweet_attributes
-  let(:message) { FFaker::Lorem.characters(140) }
   let(:location) { FFaker::AddressBR.city }
   let(:user_id) { FactoryBot.create(:user, :with_good_keys).id }
 end

@@ -7,7 +7,7 @@ class Tweet < ApplicationRecord
 
   enum status: { error: 'error', done: 'done' }
 
-  validates :message, :location, presence: true
+  validates :location, presence: true
 
   private
 
